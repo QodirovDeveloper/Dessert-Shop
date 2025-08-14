@@ -20,7 +20,7 @@ export default function Cart() {
         <div className="flex flex-col items-center">
           <img
             className="lg:w-80 max-lg:w-32"
-            src="./public/images/illustration-empty-cart.svg"
+            src="./images/illustration-empty-cart.svg"
             alt="empty-card"
           />
           <p className="text-gray-500 mt-4">
