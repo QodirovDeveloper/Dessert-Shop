@@ -29,7 +29,7 @@ export default function ProductCard({ item }) {
 
           {!cartItem ? (
             <button
-              className="absolute flex items-center justify-center gap-1 left-10 right-10 xl:-bottom-6 bottom-[-20px] px-1 cursor-pointer py-2 text-sm sm:text-base text-black bg-white border border-[#AD8A85] rounded-full"
+              className="absolute flex items-center justify-center gap-1 left-10   right-10 xl:-bottom-6 bottom-[-20px] px-1 cursor-pointer py-2 text-sm sm:text-base text-black bg-white border border-[#AD8A85] rounded-full"
               onClick={() => dispatch(addToCart(item))}
             >
               <span className="text-red-500">
