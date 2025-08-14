@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "./cartSlice";
+import { CiCircleRemove } from "react-icons/ci";
 
 export default function Cart() {
   const { products, totalCount } = useSelector((state) => state.cart);
@@ -23,9 +24,9 @@ export default function Cart() {
             </div>
             <button
               onClick={() => dispatch(removeFromCart(p.id))}
-              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+              className="text-red-300 text-3xl rounded hover:text-red-600"
             >
-              Remove
+              <CiCircleRemove />
             </button>
           </div>
         ))

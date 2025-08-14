@@ -1,9 +1,14 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, increaseQty, decreaseQty } from "../features/cart/cartSlice";
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+import { FiShoppingCart } from "react-icons/fi";
 
 export default function ProductCard({ item }) {
   const dispatch = useDispatch();
+  const cartItem = useSelector((state) =>
+    state.cart.products.find((i) => i.id === item.id)
+  );
 
   return (
     <li className="list-none">
@@ -13,16 +18,39 @@ export default function ProductCard({ item }) {
           data-tip={`${item.name} $${item.price}`}
         >
           <img
-            className="rounded-xl w-full"
+            className="rounded-md w-full"
             src={item.image.desktop}
             alt={item.name}
           />
-          <button
-            className="absolute left-6 right-6 xl:-bottom-6 bottom-[-20px] cursor-pointer py-2 text-sm sm:text-base px-4 sm:px-7 text-black bg-white border border-[#AD8A85] rounded-full"
-            onClick={() => dispatch(addToCart(item))}
-          >
-            <i className="fa-solid fa-cart-plus"></i> Add to Cart
-          </button>
+
+          {!cartItem ? (
+            <button
+              className="absolute flex items-center justify-center gap-1 left-6 right-6 xl:-bottom-6 bottom-[-20px] cursor-pointer py-2 text-sm sm:text-base px-4 sm:px-7 text-black bg-white border border-[#AD8A85] rounded-full"
+              onClick={() => dispatch(addToCart(item))}
+            >
+              <span className="text-red-500">
+                <FiShoppingCart />
+
+              </span>
+              Add to Cart
+            </button>
+          ) : (
+            <div className="absolute flex items-center justify-between gap-3 left-6 right-6 xl:-bottom-6 bottom-[-20px] py-2 px-4 bg-[#C73B0F]   rounded-full">
+              <button
+                className="text-white"
+                onClick={() => dispatch(decreaseQty(item.id))}
+              >
+                <AiOutlineMinusCircle size={18} />
+              </button>
+              <span className="text-white">{cartItem.amount}</span>
+              <button
+                className="text-white"
+                onClick={() => dispatch(increaseQty(item.id))}
+              >
+                <AiOutlinePlusCircle size={18} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
