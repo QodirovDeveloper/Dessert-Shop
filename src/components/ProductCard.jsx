@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, increaseQty, decreaseQty } from "../features/cart/cartSlice";
+import {
+  addToCart,
+  increaseQty,
+  decreaseQty,
+} from "../features/cart/cartSlice";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 
@@ -25,17 +29,16 @@ export default function ProductCard({ item }) {
 
           {!cartItem ? (
             <button
-              className="absolute flex items-center justify-center gap-1 left-6 right-6 xl:-bottom-6 bottom-[-20px] cursor-pointer py-2 text-sm sm:text-base px-4 sm:px-7 text-black bg-white border border-[#AD8A85] rounded-full"
+              className="absolute flex items-center justify-center gap-1 left-10 right-10 xl:-bottom-6 bottom-[-20px] px-1 cursor-pointer py-2 text-sm sm:text-base text-black bg-white border border-[#AD8A85] rounded-full"
               onClick={() => dispatch(addToCart(item))}
             >
               <span className="text-red-500">
                 <FiShoppingCart />
-
               </span>
               Add to Cart
             </button>
           ) : (
-            <div className="absolute flex items-center justify-between gap-3 left-6 right-6 xl:-bottom-6 bottom-[-20px] py-2 px-4 bg-[#C73B0F]   rounded-full">
+            <div className="absolute flex items-center justify-around gap-3 left-10 right-10 xl:-bottom-6 bottom-[-20px] py-2 bg-[#C73B0F]   rounded-full">
               <button
                 className="text-white"
                 onClick={() => dispatch(decreaseQty(item.id))}
